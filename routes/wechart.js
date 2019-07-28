@@ -29,12 +29,15 @@ router.get('/authertoken',function (ctx,next) {
     const query = ctx.query
 
     const signature = query.signature || ''
+    console.log(signature)
     const timestamp = query.timestamp || ''
     const nonce = query.nonce || ''
     const echostr = query.echostr || ''
     let str = token + timestamp + nonce
     let sha1code = sha1(str)
+    console.log(sha1code)
     if(sha1code == signature){
+        console.log(true)
         ctx.body = echostr
     }else{
         ctx.body = ''
