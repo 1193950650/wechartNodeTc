@@ -1,21 +1,6 @@
 const router = require('koa-router')()
 const sha1 = require('sha1')
 router.prefix('/wechart')
-
-
-router.get('/test',function(ctx,next){
-    let sendParmars = {}
-    try {
-        sendParmars = {
-            title:'wechart',
-            value:'this is wechart body'
-        }
-    }catch (e) {
-        sendParmars = {title:'',value: ''}
-    }
-    ctx.body = sendParmars
-})
-
 /***********************
 *times:28/07/2019
 *author:1193950650@qq.com
