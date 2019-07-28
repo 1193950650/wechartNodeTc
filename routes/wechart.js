@@ -28,7 +28,6 @@ router.get('/test',function(ctx,next){
 router.get('/authertoken',function (ctx,next) {
     const token = 'wechart'
     const query = ctx.query
-
     const signature = query.signature || ''
     console.log("微信传递的加密："+signature)
     const timestamp = query.timestamp || ''
