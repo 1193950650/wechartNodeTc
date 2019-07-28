@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="30f192eb-bc5c-4fa3-a239-10e6dec141cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/wechart.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/wechart.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,17 +40,17 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="1080" />
+          <entry key="js" value="1137" />
           <entry key="json" value="6" />
-          <entry key="txt" value="10" />
+          <entry key="txt" value="22" />
           <entry key="www" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="1085" />
-          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="JavaScript" value="1142" />
+          <entry key="PLAIN_TEXT" value="22" />
         </counts>
       </usages-collector>
     </session>
@@ -64,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
-              <caret line="38" column="47" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="47" />
+            <state relative-caret-position="322">
+              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
             </state>
           </provider>
         </entry>
@@ -106,11 +108,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/wechart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+            <state relative-caret-position="537">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -140,11 +142,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/routes/users.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/routes/wechart.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -182,16 +184,6 @@
             <path>
               <item name="wechartNodeTc" type="b2602c69:ProjectViewProjectNode" />
               <item name="wechartNodeTc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wechartNodeTc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wechartNodeTc" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wechartNodeTc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wechartNodeTc" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wechartNodeTc" type="b2602c69:ProjectViewProjectNode" />
@@ -246,7 +238,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1564290973843</updated>
-      <workItem from="1564290976451" duration="5197000" />
+      <workItem from="1564290976451" duration="7089000" />
     </task>
     <task id="LOCAL-00001" summary="koa2">
       <created>1564291378838</created>
@@ -318,11 +310,25 @@
       <option name="project" value="LOCAL" />
       <updated>1564296835294</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="微信服务器验证token">
+      <created>1564296880937</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1564296880937</updated>
+    </task>
+    <task id="LOCAL-00012" summary="微信服务器验证token">
+      <created>1564298018013</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1564298018013</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5197000" />
+    <option name="totallyTimeSpent" value="7089000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -338,7 +344,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33810574" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23898679" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -357,16 +363,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="koa2" />
     <MESSAGE value="最后一次提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="最后一次提交" />
+    <MESSAGE value="微信服务器验证token" />
+    <option name="LAST_COMMIT_MESSAGE" value="微信服务器验证token" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="38" column="47" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.pug">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -406,8 +406,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/wechart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+        <state relative-caret-position="537">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
         </state>
       </provider>
     </entry>

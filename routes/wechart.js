@@ -29,4 +29,6 @@ router.get('/authertoken',function (ctx,next) {
 
 })
 
+router.get('/')
+
 module.exports = router

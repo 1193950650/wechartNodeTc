@@ -5,9 +5,7 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-
 const wechart = require('./routes/wechart')
-
 // error handler
 onerror(app)
 
@@ -23,16 +21,28 @@ app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
 
-// logger
+app.use(async (ctx, next)=> {
+
+});
+
+//解决跨域和前端options请求问题
 app.use(async (ctx, next) => {
+    ctx.set('Access-Control-Allow-Origin', '*');
+    ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+    ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    if (ctx.method == 'OPTIONS') {
+        ctx.body = 200;
+    } else {
+        await next();
+    }
   const start = new Date()
-  await next()
   const ms = new Date() - start
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
 // routes
 app.use(wechart.routes(),wechart.allowedMethods())
+
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
