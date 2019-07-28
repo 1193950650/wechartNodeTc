@@ -2,7 +2,7 @@ const router = require('koa-router')()
 const sha1 = require('sha1')
 router.prefix('/wechart')
 
-router.post('/',function(ctx,next){
+router.get('/test',function(ctx,next){
     let sendParmars = {}
     try {
         sendParmars = {
