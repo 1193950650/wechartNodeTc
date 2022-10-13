@@ -1,7 +1,7 @@
 /*
  * @Author: yuszhou
  * @Date: 2022-10-13 15:56:20
- * @LastEditTime: 2022-10-13 16:31:58
+ * @LastEditTime: 2022-10-14 01:20:18
  * @LastEditors: yuszhou
  * @Description: *remarks:微信token验证。
  * 此验证为get 微信将发送一个含有微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
@@ -12,23 +12,31 @@
  */
 const router = require('koa-router')()
 const sha1 = require('sha1')
+const wecharts = require('../moudel/wecharts')
+const wechartFn = new wecharts()
 router.prefix('/wechart')
 router.get('/authertoken',function (ctx,next) {
     const token = 'wechart'
     const query = ctx.query
     const signature = query.signature || ''
-    console.log("微信传递的加密："+signature)
     const timestamp = query.timestamp || ''
     const nonce = query.nonce || ''
     const echostr = query.echostr || ''
     let str = [token, timestamp, nonce].sort().join('')
     let sha1code = sha1(str)
-    console.log('服务器加密：'+sha1code)
     if(sha1code == signature){
         ctx.body = echostr
     }else{
         ctx.body = ''
     }
+
+})
+
+//获取微信信息
+router.get('/getwechartsUserInfo',async(ctx,next)=>{
+    const autherCode = ctx.request.url.split('code=')[1].split('&')[0]
+    const {access_token,openid} = await wechartFn.getwechartsOpenIdByCode(autherCode)
+    const {nickname,sex,province,city,country,headimgurl,privilege,unionid} = await wechartFn.getuserInfoByTokenAndOpenId(access_token,openid)
 
 })
 module.exports = router

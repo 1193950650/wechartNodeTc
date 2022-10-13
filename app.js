@@ -1,7 +1,7 @@
 /*
  * @Author: yuszhou
  * @Date: 2022-10-13 15:56:20
- * @LastEditTime: 2022-10-13 16:31:25
+ * @LastEditTime: 2022-10-14 01:03:07
  * @LastEditors: yuszhou
  * @Description: 
  * @FilePath: \wechartNodeTc\app.js
@@ -27,7 +27,7 @@ app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
-  extension: 'pug'
+  extension:'ejs'
 }))
 
 //解决跨域和前端options请求问题
@@ -42,7 +42,6 @@ app.use(async (ctx, next) => {
     }
   const start = new Date()
   const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
 // routes

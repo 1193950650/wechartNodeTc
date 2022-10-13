@@ -1,0 +1,38 @@
+<!--
+ * @Author: yuszhou
+ * @Date: 2022-10-13 15:56:20
+ * @LastEditTime: 2022-10-14 01:24:00
+ * @LastEditors: yuszhou
+ * @Description: 打开当前界面通过拉起用户授权，并且获取code
+ * @FilePath: \wechartNodeTc\views\index.ejs
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <title>Semence</title>
+</head>
+<body>
+  <script>
+    var host = 'https://5753g89w78.zicp.fun'
+    var local = '/wechart/getwechartsUserInfo'
+    var appId = 'wxf9773b51ec6dc1e8'
+    function chechisWechartsEnv(){
+      return /micromessenger/i.test(navigator.userAgent.toLowerCase())
+    }
+    (function(){
+      if(chechisWechartsEnv()){
+        window.location.href =
+                        "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" +
+                        appId +
+                        "&redirect_uri=" +
+                        encodeURIComponent(host+local) +
+                        "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+      }
+    })()
+  </script>
+</body>
+</html>
