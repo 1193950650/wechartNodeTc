@@ -13,8 +13,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Semence</title>
+    <style>
+        html,body{
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0px;
+        }
+        .errorData{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        }
+        .errorData span{
+        font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    抱歉！当前服务发生意外，请稍后再试。
+    <div class="errorData">
+        <span>抱歉！当前服务发生意外，请稍后再试。</span>
+      </div>
 </body>
 </html>
