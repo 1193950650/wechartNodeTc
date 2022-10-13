@@ -1,3 +1,11 @@
+/*
+ * @Author: yuszhou
+ * @Date: 2022-10-13 15:56:20
+ * @LastEditTime: 2022-10-13 16:31:25
+ * @LastEditors: yuszhou
+ * @Description: 
+ * @FilePath: \wechartNodeTc\app.js
+ */
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -6,6 +14,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const wechart = require('./routes/wechart')
+const indexRouter = require('./routes/index')
 // error handler
 onerror(app)
 
@@ -20,10 +29,6 @@ app.use(require('koa-static')(__dirname + '/public'))
 app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
-
-app.use(async (ctx, next)=> {
-
-});
 
 //解决跨域和前端options请求问题
 app.use(async (ctx, next) => {
@@ -41,7 +46,9 @@ app.use(async (ctx, next) => {
 })
 
 // routes
-app.use(wechart.routes(),wechart.allowedMethods())
+app.use(wechart.routes())
+// routes
+app.use(indexRouter.routes())
 
 // error-handling
 app.on('error', (err, ctx) => {

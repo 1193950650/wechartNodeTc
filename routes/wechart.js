@@ -1,15 +1,18 @@
-const router = require('koa-router')()
-const sha1 = require('sha1')
-router.prefix('/wechart')
-/***********************
-*times:28/07/2019
-*author:1193950650@qq.com
-*remarks:微信token验证。
+/*
+ * @Author: yuszhou
+ * @Date: 2022-10-13 15:56:20
+ * @LastEditTime: 2022-10-13 16:31:58
+ * @LastEditors: yuszhou
+ * @Description: *remarks:微信token验证。
  * 此验证为get 微信将发送一个含有微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
  * timestamp（时间戳）
  * nonce（随机数）
  * echostr（将要返回给微信的参数，如果加密后的数据相等）
-************************/
+ * @FilePath: \wechartNodeTc\routes\wechart.js
+ */
+const router = require('koa-router')()
+const sha1 = require('sha1')
+router.prefix('/wechart')
 router.get('/authertoken',function (ctx,next) {
     const token = 'wechart'
     const query = ctx.query
@@ -28,7 +31,4 @@ router.get('/authertoken',function (ctx,next) {
     }
 
 })
-
-router.get('/')
-
 module.exports = router
