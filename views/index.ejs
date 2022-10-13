@@ -1,7 +1,7 @@
 <!--
  * @Author: yuszhou
  * @Date: 2022-10-13 15:56:20
- * @LastEditTime: 2022-10-14 01:34:07
+ * @LastEditTime: 2022-10-14 01:38:14
  * @LastEditors: yuszhou
  * @Description: 打开当前界面通过拉起用户授权，并且获取code
  * @FilePath: \wechartNodeTc\views\index.ejs
@@ -55,7 +55,7 @@
                         encodeURIComponent(host+local) +
                         "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
       }else{
-        $('.errorData span').html('抱歉！当前网页只能在微信公众号打开')
+        $('.errorData span').html('抱歉！当前网页只能在微信公众号中打开')
       }
     })()
   </script>
