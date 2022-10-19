@@ -1,7 +1,7 @@
 <!--
  * @Author: yuszhou
  * @Date: 2022-10-13 15:56:20
- * @LastEditTime: 2022-10-14 01:38:14
+ * @LastEditTime: 2022-10-17 11:10:38
  * @LastEditors: yuszhou
  * @Description: 打开当前界面通过拉起用户授权，并且获取code
  * @FilePath: \wechartNodeTc\views\index.ejs
@@ -41,21 +41,47 @@
   </div>
   <script>
     var host = 'https://5753g89w78.zicp.fun'
-    var local = '/wechart/getwechartsUserInfo'
+    var local = '/'
     var appId = 'wxf9773b51ec6dc1e8'
+    function setStatus(status){
+      $('.errorData span').html(status)
+    }
+    function checkIsWechartsResponse(){
+      if(window.location.search == '') return false
+      var autherCode = window.location.search.split('code=')[1].split('&')[0]
+      return autherCode
+    }
     function chechisWechartsEnv(){
       return /micromessenger/i.test(navigator.userAgent.toLowerCase())
     }
+    function isloadingNow(){
+      var loading = ['','.','..','...']
+      var index = 0
+      setInterval(function(){
+        setStatus('正在登录中<span style="width=50px">'+loading[index]+'</span>')
+        if(index == 3){
+          index = 0
+        }else{
+          index ++
+        }
+      },500)
+    }
     (function(){
       if(chechisWechartsEnv()){
-        window.location.href =
+        var code = checkIsWechartsResponse()
+        if(code){
+          isloadingNow()
+          window.location.href = host+'/wechart/getwechartsUserInfo?code='+code
+        }else{
+          window.location.href =
                         "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" +
                         appId +
                         "&redirect_uri=" +
                         encodeURIComponent(host+local) +
                         "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        }
       }else{
-        $('.errorData span').html('抱歉！当前网页只能在微信公众号中打开')
+        setStatus('抱歉！当前网页只能在微信公众号中打开')
       }
     })()
   </script>

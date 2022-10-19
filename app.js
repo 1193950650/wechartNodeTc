@@ -1,7 +1,7 @@
 /*
  * @Author: yuszhou
  * @Date: 2022-10-13 15:56:20
- * @LastEditTime: 2022-10-14 01:03:07
+ * @LastEditTime: 2022-10-16 23:38:56
  * @LastEditors: yuszhou
  * @Description: 
  * @FilePath: \wechartNodeTc\app.js
@@ -50,8 +50,8 @@ app.use(wechart.routes())
 app.use(indexRouter.routes())
 
 // error-handling
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
+app.on('error', async (err, ctx) => {
+  console.log('[ERROR]'+err)
 });
 
 module.exports = app

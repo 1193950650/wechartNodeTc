@@ -1,7 +1,7 @@
 /*
  * @Author: yuszhou
  * @Date: 2022-10-13 23:00:59
- * @LastEditTime: 2022-10-14 01:21:23
+ * @LastEditTime: 2022-10-17 11:10:14
  * @LastEditors: yuszhou
  * @Description: 实现wecharts 方法
  * @FilePath: \wechartNodeTc\moudel\wecharts.js
@@ -39,6 +39,46 @@ class wechart {
             return null
         }
     }
+    async getaccessToken(){
+        try {
+            return new Promise((r)=>{
+                axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${this.appId}&secret=${this.secret}`).then(res=>{
+                    r(JSON.parse(res.response.body))  
+                })
+            })
+        } catch (error) {
+            console.log('[getuserInfoByTokenAndOpenId serviceError]' + error)
+            return null
+        }
+    }
+    //getMenu
+    async getMenu(token){
+        try {
+            return new Promise((r)=>{
+                axios.get(`https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=${token}`).then(res=>{
+                    r(JSON.parse(res.response.body))  
+                })
+            })
+        } catch (error) {
+            console.log('[getMenu serviceError]' + error)
+        }
+    }
+    //setMenu
+    async setMenu(data,token){
+        try {
+            return new Promise((r)=>{
+                console.log(data)
+                axios.post(`https://api.weixin.qq.com/cgi-bin/menu/create?access_token=${token}`,data).then(res=>{
+                    r(JSON.parse(res.response.body))  
+                }).catch(errr=>{
+                    console.log(errr)
+                })
+            })
+        } catch (error) {
+            console.log('[setMenu serviceError]' + error)
+        }
+    }
+    
 }
 
 module.exports = wechart

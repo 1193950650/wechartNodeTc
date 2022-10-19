@@ -1,0 +1,87 @@
+<!--
+ * @Author: yuszhou
+ * @Date: 2022-10-14 01:24:23
+ * @LastEditTime: 2022-10-17 01:56:54
+ * @LastEditors: yuszhou
+ * @Description: 自定义菜单
+ * @FilePath: \wechartNodeTc\views\menu.ejs
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Semence</title>
+    <style>
+        html,body{
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0px;
+        }
+        .data{
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+        .data textarea{
+            border: none;
+            text-align: left;
+            height: 100%;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .data span{
+            position: absolute;
+            bottom: 50px;
+            right: 30px;
+            display: block;
+            box-sizing: border-box;
+            height: 50px;
+            width: 50px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            border-radius: 100%;
+            box-shadow: 0px 0px 26px -1px #9e9e9e;;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="data">
+        <textarea name="textarea" id="menu" value="" cols="30" rows="10"><%=data%></textarea>
+        <span class="click">update</span>
+    </div>
+</body>
+<script>
+    (function(){
+        $('.click').on('click',function(){
+            var json = $('#menu').val()
+            $.ajax({
+                url:'/wechart/setMenu',
+                data:{
+                    data:json
+                },
+                method:'POST',
+                success:function(res){
+                    console.log(res)
+                    if(res.errmsg == 'ok'){
+                        alert('更新成功')
+                    }else{
+                        alert('更新失败：'+res.errmsg)
+                    }
+                }
+            })
+        })
+    })()
+</script>
+</html>

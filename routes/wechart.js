@@ -1,7 +1,7 @@
 /*
  * @Author: yuszhou
  * @Date: 2022-10-13 15:56:20
- * @LastEditTime: 2022-10-14 01:44:11
+ * @LastEditTime: 2022-10-17 02:01:35
  * @LastEditors: yuszhou
  * @Description: *remarks:微信token验证。
  * 此验证为get 微信将发送一个含有微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
@@ -13,6 +13,7 @@
 const router = require('koa-router')()
 const sha1 = require('sha1')
 const wecharts = require('../moudel/wecharts')
+const UimService = require('../moudel/getRedireactUrl')
 const wechartService = new wecharts()
 router.prefix('/wechart')
 router.get('/authertoken',function (ctx,next) {
@@ -34,9 +35,41 @@ router.get('/authertoken',function (ctx,next) {
 
 //获取微信信息
 router.get('/getwechartsUserInfo',async(ctx,next)=>{
-    const autherCode = ctx.request.url.split('code=')[1].split('&')[0]
-    const {access_token,openid} = await wechartService.getwechartsOpenIdByCode(autherCode)
-    const {nickname,sex,province,city,country,headimgurl,privilege,unionid} = await wechartService.getuserInfoByTokenAndOpenId(access_token,openid)
-    const redirectUrl = await 
+    try {
+        const autherCode = ctx.request.url.split('code=')[1]
+        const {access_token,openid} = await wechartService.getwechartsOpenIdByCode(autherCode)
+        const {nickname,sex,province,city,country,headimgurl,privilege,unionid} = await wechartService.getuserInfoByTokenAndOpenId(access_token,openid)
+        const redirectUrl = await UimService({openId:openid,nickName:nickname,sex:sex,province:province,city:city,country:country,headimgUrl:headimgurl,privilege:privilege,unionId:unionid})  
+        if(redirectUrl){
+            ctx.status = 301
+            ctx.redirect(redirectUrl)
+        }else{
+            await ctx.render('error')
+            ctx.app.emit('error','登陆失败，请稍后再试')
+        }
+    } catch (error) {
+        await ctx.render('error')
+        ctx.app.emit('error',error)
+    }    
+})
+router.get('/getMenu',async(ctx,next)=>{
+    try {
+        const {access_token} = await wechartService.getaccessToken()
+        const menuList = await wechartService.getMenu(access_token)
+        return ctx.render('menu',{data:JSON.stringify(menuList)})
+    } catch (error) {
+        await ctx.render('error')
+        ctx.app.emit('error',error)     
+    }
+})
+router.post('/setMenu',async(ctx,next)=>{
+    try {
+        const {access_token} = await wechartService.getaccessToken()
+        const updateMenu = await wechartService.setMenu(ctx.request.body.data,access_token)
+        ctx.body = updateMenu
+    } catch (error) {
+        await ctx.render('error')
+        ctx.app.emit('error',error)     
+    }
 })
 module.exports = router
