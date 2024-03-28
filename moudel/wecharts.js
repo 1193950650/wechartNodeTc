@@ -10,8 +10,8 @@ const axios = require('flyio')
 class wechart {
     constructor() {
         //当前openId为测试版 //如果存在真实openId则需要替换
-        this.appId = 'wxf9773b51ec6dc1e8'
-        this.secret = '5295febe0177ae35d1570ed7e25024d0'
+        this.appId = 'wxdac7e4ec2a321ce9'
+        this.secret = 'e641d555495a22d452585893ced79476'
     }
     
     async getwechartsOpenIdByCode(code) {
@@ -51,6 +51,25 @@ class wechart {
             return null
         }
     }
+
+    async getstableToken(){
+        try {
+            return new Promise((r)=>{
+                axios.post(`https://api.weixin.qq.com/cgi-bin/stable_token`,{
+                    grant_type: 'client_credential',
+                    appid: this.appId,
+                    secret: this.secret,
+                    force_refresh: true
+                }).then(res=>{
+                    console.log(res.response)
+                    r(JSON.parse(res.response.body))  
+                })
+            })
+        } catch (err){
+            console.log('[getMenu serviceError]' + err)
+        }
+    }
+
     //getMenu
     async getMenu(token){
         try {
@@ -76,6 +95,18 @@ class wechart {
             })
         } catch (error) {
             console.log('[setMenu serviceError]' + error)
+        }
+    }
+    
+    async getUnionIdByOpenId(openId,token){
+        try {
+            return new Promise((r)=>{
+                axios.get(`https://api.weixin.qq.com/cgi-bin/user/info?access_token=${token}&openid=${openId}&lang=zh_CN`).then(res=>{
+                    r(JSON.parse(res.response.body))  
+                })
+            })
+        } catch (error) {
+            console.log('[getUnionIdByOpenId serviceError]' + error)
         }
     }
     
